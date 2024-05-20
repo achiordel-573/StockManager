@@ -2,6 +2,7 @@ using Npgsql;
 using System.Data;
 using System.Configuration;
 using Microsoft.Office.Interop.Excel;
+using System.Data.SqlTypes;
 
 namespace StockManager
 {
@@ -9,36 +10,6 @@ namespace StockManager
     {
         private readonly DataSet ds = new DataSet();
         private System.Data.DataTable dt = new System.Data.DataTable();
-        private String constr;
-        private String DatabaseSetup()
-        {
-            var builder = new NpgsqlConnectionStringBuilder();
-            builder.Host = ConfigurationManager.AppSettings["DB_HOST"];
-            builder.Port = Int32.Parse(ConfigurationManager.AppSettings["DB_PORT"]);
-            builder.Username = ConfigurationManager.AppSettings["DB_USER"];
-            builder.Password = ConfigurationManager.AppSettings["DB_PSWD"];
-            builder.Database = ConfigurationManager.AppSettings["DB_NAME"];
-
-            return builder.ConnectionString;
-        }
-
-        private void DataSetUpdate(string sql, DataGridView gdv)
-        {
-            if (constr == null)
-            {
-                constr = DatabaseSetup();
-            }
-
-            using (var conn = new NpgsqlConnection(constr))
-            {
-                ds.Reset();
-                NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
-                da.Fill(ds);
-                dt = ds.Tables[0];
-                gdv.DataSource = dt;
-            }
-        }
-
         private void DataTableExport(DataGridView dgv)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -63,18 +34,30 @@ namespace StockManager
         public Form1()
         {
             InitializeComponent(); ;
-            String sql = ("select * from providers");
-            DataSetUpdate(sql, dataGridView2);
+            GetProducts();
+        }
+        private void GetProducts()
+        {
+            DatabaseUtils du = new DatabaseUtils();
+            DataSet da = du.Select_Records(ds);
+            dt = ds.Tables[0];
+            dataGridView1.DataSource = dt;
+            dataGridView1.Columns[0].HeaderText = "Идентификатор";
+            dataGridView1.Columns[1].HeaderText = "Название";
+            dataGridView1.Columns[2].HeaderText = "Количество";
+        }
+        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DatabaseUtils du = new DatabaseUtils();
+            du.Delete_Record((int)(dataGridView1.CurrentRow.Cells["id"].Value));
+            GetProducts();
         }
 
-        private void export_to_ms_excel_Click(object sender, EventArgs e)
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            DataTableExport(dataGridView1);
-        }
-
-        private void mSExcelToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            DataTableExport(dataGridView2);
+            Form2 addForm = new Form2();
+            addForm.ShowDialog();
+            GetProducts();
         }
     }
 }
