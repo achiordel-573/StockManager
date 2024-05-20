@@ -40,6 +40,7 @@
             toolStripMenuItem2 = new ToolStripMenuItem();
             изменитьToolStripMenuItem = new ToolStripMenuItem();
             удалитьToolStripMenuItem = new ToolStripMenuItem();
+            продажиToolStripMenuItem = new ToolStripMenuItem();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -89,7 +90,7 @@
             // 
             // products_ms_reports
             // 
-            products_ms_reports.DropDownItems.AddRange(new ToolStripItem[] { products_ms_i_invoice, поставщикиToolStripMenuItem, списанияToolStripMenuItem });
+            products_ms_reports.DropDownItems.AddRange(new ToolStripItem[] { products_ms_i_invoice, поставщикиToolStripMenuItem, списанияToolStripMenuItem, продажиToolStripMenuItem });
             products_ms_reports.Name = "products_ms_reports";
             products_ms_reports.Size = new Size(60, 20);
             products_ms_reports.Text = "Отчёты";
@@ -99,25 +100,28 @@
             products_ms_i_invoice.Name = "products_ms_i_invoice";
             products_ms_i_invoice.Size = new Size(147, 22);
             products_ms_i_invoice.Text = "Поступления";
+            products_ms_i_invoice.Click += products_ms_i_invoice_Click;
             // 
             // поставщикиToolStripMenuItem
             // 
             поставщикиToolStripMenuItem.Name = "поставщикиToolStripMenuItem";
             поставщикиToolStripMenuItem.Size = new Size(147, 22);
             поставщикиToolStripMenuItem.Text = "Поставщики";
+            поставщикиToolStripMenuItem.Click += поставщикиToolStripMenuItem_Click;
             // 
             // списанияToolStripMenuItem
             // 
             списанияToolStripMenuItem.Name = "списанияToolStripMenuItem";
             списанияToolStripMenuItem.Size = new Size(147, 22);
             списанияToolStripMenuItem.Text = "Списания";
+            списанияToolStripMenuItem.Click += списанияToolStripMenuItem_Click;
             // 
             // таблицаToolStripMenuItem2
             // 
             таблицаToolStripMenuItem2.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem2, изменитьToolStripMenuItem, удалитьToolStripMenuItem });
             таблицаToolStripMenuItem2.Name = "таблицаToolStripMenuItem2";
-            таблицаToolStripMenuItem2.Size = new Size(65, 20);
-            таблицаToolStripMenuItem2.Text = "Таблица";
+            таблицаToolStripMenuItem2.Size = new Size(59, 20);
+            таблицаToolStripMenuItem2.Text = "Записи";
             // 
             // toolStripMenuItem2
             // 
@@ -128,6 +132,7 @@
             // 
             // изменитьToolStripMenuItem
             // 
+            изменитьToolStripMenuItem.Enabled = false;
             изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
             изменитьToolStripMenuItem.Size = new Size(180, 22);
             изменитьToolStripMenuItem.Text = "Изменить";
@@ -138,6 +143,13 @@
             удалитьToolStripMenuItem.Size = new Size(180, 22);
             удалитьToolStripMenuItem.Text = "Удалить";
             удалитьToolStripMenuItem.Click += удалитьToolStripMenuItem_Click;
+            // 
+            // продажиToolStripMenuItem
+            // 
+            продажиToolStripMenuItem.Name = "продажиToolStripMenuItem";
+            продажиToolStripMenuItem.Size = new Size(180, 22);
+            продажиToolStripMenuItem.Text = "Продажи";
+            продажиToolStripMenuItem.Click += продажиToolStripMenuItem_Click;
             // 
             // Form1
             // 
@@ -178,5 +190,6 @@
         private ToolStripMenuItem toolStripMenuItem2;
         private ToolStripMenuItem изменитьToolStripMenuItem;
         private ToolStripMenuItem удалитьToolStripMenuItem;
+        private ToolStripMenuItem продажиToolStripMenuItem;
     }
 }

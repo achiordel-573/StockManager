@@ -26,7 +26,7 @@ namespace StockManager
             return builder.ConnectionString;
         }
 
-        public DataSet Select_Records(DataSet dataset)
+        public DataSet Select_Records(DataSet dataset, string cmd)
         {
             if (conn_string == null)
             {
@@ -35,7 +35,6 @@ namespace StockManager
             using (conn = new NpgsqlConnection(conn_string))
             {
                 conn.Open();
-                string cmd = "SELECT * FROM products";
                 NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(cmd, conn);
                 dataset.Reset();
                 adapter.Fill(dataset);

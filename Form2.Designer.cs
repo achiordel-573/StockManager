@@ -48,7 +48,7 @@
             groupBox1.Size = new Size(646, 132);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
-            groupBox1.Text = "groupBox1";
+            groupBox1.Text = "Параметры продукта";
             // 
             // button2
             // 
@@ -74,17 +74,17 @@
             // 
             textBox2.Location = new Point(12, 51);
             textBox2.Name = "textBox2";
+            textBox2.PlaceholderText = "Количество продукта";
             textBox2.Size = new Size(622, 23);
             textBox2.TabIndex = 3;
-            textBox2.Text = "Количество продукта";
             // 
             // textBox1
             // 
             textBox1.Location = new Point(12, 22);
             textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "Название продукта";
             textBox1.Size = new Size(622, 23);
             textBox1.TabIndex = 2;
-            textBox1.Text = "Название продукта";
             // 
             // Form2
             // 
@@ -97,7 +97,7 @@
             MinimumSize = new Size(662, 171);
             Name = "Form2";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Добавить новый продукт";
+            Text = "SM | Новая запись";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
